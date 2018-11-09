@@ -9,8 +9,8 @@ namespace AutoRepair.Services
 {
     public class AppoimtmentsRepository : IAppoimtmentsRepository, IDisposable
     {
-        private AppoimtmentsContext _context;
-        public AppoimtmentsRepository(AppoimtmentsContext context)
+        private AutoRepairContext _context;
+        public AppoimtmentsRepository(AutoRepairContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -21,7 +21,8 @@ namespace AutoRepair.Services
 
         public async Task<IEnumerable<Appoimtment>> GetAppoimtmentsAsync()
         {
-            return  await _context.Appoimtments.ToListAsync();
+            throw new NotImplementedException();
+            //return await _context.Appoimtments.ToListAsync();
         }
 
         public void Dispose()

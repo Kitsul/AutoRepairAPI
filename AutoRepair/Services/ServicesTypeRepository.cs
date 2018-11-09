@@ -9,14 +9,22 @@ namespace AutoRepair.Services
 {
     public class ServicesTypeRepository : IServicesTypeRepository
     {
-        private AppoimtmentsContext _context;
-        public ServicesTypeRepository(AppoimtmentsContext context)
+        private AutoRepairContext _context;
+        public ServicesTypeRepository(AutoRepairContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
         public async Task<IEnumerable<ServiceType>> GetServicesTypeAsync()
         {
-            return await _context.ServicesType.ToListAsync();
+            try
+            {
+                return await _context.ServicesType.ToListAsync();
+            }
+            catch(Exception ex)
+            {
+                var t = ex;
+                return null;
+            }
         }
     }
 }

@@ -13,5 +13,8 @@ namespace AutoRepair.Entities
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
+
+        [ForeignKey("UserId")]
+        public User User { get; set; }
     }
 }

@@ -26,5 +26,6 @@ namespace AutoRepair.Entities
         public string PhoneNumber { get; set; }
 
         public ICollection<UserDiscountService> UserDiscountServices { get; set; }
+        public ICollection<ModelCar> ModelsCar { get; set; }
     }
 }

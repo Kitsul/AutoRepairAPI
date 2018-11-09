@@ -31,8 +31,8 @@ namespace AutoRepair
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            var connectionString = Configuration[""];
-            services.AddDbContext<AppoimtmentsContext>(x => x.UseSqlServer(connectionString));
+            var connectionString = Configuration["ConnectionStrings:AutoRepairDBConnectionString"];
+            services.AddDbContext<AutoRepairContext>(x => x.UseSqlServer(connectionString));
 
             services.AddScoped<IAppoimtmentsRepository, AppoimtmentsRepository>();
             services.AddScoped<IServicesTypeRepository, ServicesTypeRepository>();
