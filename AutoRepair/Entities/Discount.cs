@@ -2,28 +2,23 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AutoRepair.Entities
 {
-    [Table("Users")]
-    public class User
+    [Table("Discounts")]
+    public class Discount
     {
         [Key]
         public Guid Id { get; set; }
 
         [Required]
-        [MaxLength(100)]
-        public string FirstName { get; set; }
-
-        [MaxLength(200)]
-        public string SecondName { get; set; }
+        public decimal Count { get; set; }
 
         [Required]
         [MaxLength(200)]
-        public string Email { get; set; }
-
-        [MaxLength(200)]
-        public string PhoneNumber { get; set; }
+        public string Description { get; set; }
 
         public ICollection<UserDiscountService> UserDiscountServices { get; set; }
     }

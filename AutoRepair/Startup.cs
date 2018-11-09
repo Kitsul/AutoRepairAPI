@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using AutoRepair.Context;
 using AutoRepair.Services;
 using Microsoft.AspNetCore.Builder;
@@ -32,7 +33,11 @@ namespace AutoRepair
 
             var connectionString = Configuration[""];
             services.AddDbContext<AppoimtmentsContext>(x => x.UseSqlServer(connectionString));
+
             services.AddScoped<IAppoimtmentsRepository, AppoimtmentsRepository>();
+            services.AddScoped<IServicesTypeRepository, ServicesTypeRepository>();
+
+            services.AddAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

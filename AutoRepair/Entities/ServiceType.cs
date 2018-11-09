@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,6 +13,8 @@ namespace AutoRepair.Entities
 
         [Required]
         [MaxLength(70)]
-        public int Name { get; set; }
+        public string Name { get; set; }
+
+        public ICollection<UserDiscountService> UserDiscountServices { get; set; }
     }
 }
