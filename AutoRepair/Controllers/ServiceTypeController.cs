@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AutoRepair.Controllers
 {
-    [Route("api/servicesType")]
+    [Route("api")]
     [ApiController]
     public class ServiceTypeController : Controller
     {

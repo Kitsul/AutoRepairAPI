@@ -1,8 +1,8 @@
-﻿using AutoRepair.Services;
+﻿using AutoMapper;
+using AutoRepair.Models;
+using AutoRepair.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AutoRepair.Controllers
@@ -12,12 +12,20 @@ namespace AutoRepair.Controllers
     public class AppoimtmentController : Controller
     {
         private IAppoimtmentsRepository _appoimtmentRepository;
-        public AppoimtmentController(IAppoimtmentsRepository appoimtmentRepository)
+        private readonly IMapper _mapper;
+        public AppoimtmentController(IAppoimtmentsRepository appoimtmentRepository, IMapper mapper)
         {
             _appoimtmentRepository = appoimtmentRepository ?? throw new ArgumentNullException(nameof(appoimtmentRepository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
-        public async Task<IActionResult> CreateAppoimtment([FromBody] int id)
-        {
+        [HttpPost]
+        public async Task<IActionResult> CreateAppoimtment([FromBody] Appoimtment appoimtment)
+        { 
+            var t = DateTime.Parse(appoimtment.StartDate);
+            var appoimtmentEntity = _mapper.Map<Entities.Appoimtment>(appoimtment);
+            _appoimtmentRepository.AddAppoimtment(appoimtmentEntity);
+
+            await _appoimtmentRepository.SaveChangesAsync();
             return Ok();
         }
        

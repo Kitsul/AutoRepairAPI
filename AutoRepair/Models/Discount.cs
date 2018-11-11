@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace AutoRepair.Models
 {
-    public class ServiceType
+    public class Discount
     {
-        public string Name { get; set; }
+        public string DiscountMessage { get; set; }
     }
 }

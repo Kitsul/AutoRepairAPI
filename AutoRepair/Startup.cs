@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoRepair.Context;
+using AutoRepair.Mapper;
 using AutoRepair.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +31,7 @@ namespace AutoRepair
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             var connectionString = Configuration["ConnectionStrings:AutoRepairDBConnectionString"];
@@ -36,7 +39,9 @@ namespace AutoRepair
 
             services.AddScoped<IAppoimtmentsRepository, AppoimtmentsRepository>();
             services.AddScoped<IServicesTypeRepository, ServicesTypeRepository>();
-
+            services.AddScoped<IModelsCarRepository, ModelsCarRepository>();
+            services.AddScoped<IUserRepository, UserRepository>(); 
+            services.AddScoped<IDiscountRepository, DiscountRepository>();
             services.AddAutoMapper();
         }
 
@@ -51,7 +56,11 @@ namespace AutoRepair
             {
                 app.UseHsts();
             }
-
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
             app.UseHttpsRedirection();
             app.UseMvc();
         }

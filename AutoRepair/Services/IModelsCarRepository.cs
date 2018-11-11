@@ -4,9 +4,8 @@ using System.Threading.Tasks;
 
 namespace AutoRepair.Services
 {
-    public interface IAppoimtmentsRepository
+    public interface IModelsCarRepository
     {
-        void AddAppoimtment(Appoimtment appoimtment);
-        Task<bool> SaveChangesAsync();
+        Task<IEnumerable<ModelCar>> GetModelCarAsync();
     }
 }

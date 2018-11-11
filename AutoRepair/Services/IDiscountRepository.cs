@@ -1,12 +1,13 @@
 ﻿using AutoRepair.Entities;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AutoRepair.Services
 {
-    public interface IAppoimtmentsRepository
+    public interface IDiscountRepository
     {
-        void AddAppoimtment(Appoimtment appoimtment);
-        Task<bool> SaveChangesAsync();
+        Task<IEnumerable<Discount>> GetDiscountAsync();
     }
 }

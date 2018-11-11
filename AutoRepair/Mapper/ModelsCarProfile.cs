@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AutoRepair.Mapper
 {
-    public class ServicesTypeProfile : Profile
+    public class ModelsCarProfile : Profile
     {
-        public ServicesTypeProfile()
+        public ModelsCarProfile()
         {
-            CreateMap<Entities.ServiceType, Models.ServiceType>()
+            CreateMap<Entities.ModelCar, Models.ModelCar>()
                 .ForMember(x => x.Name, map => map.MapFrom(src => src.Name));
         }
     }

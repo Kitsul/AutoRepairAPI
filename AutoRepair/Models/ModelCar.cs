@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AutoRepair.Models
 {
-    public class ServiceType
+    public class ModelCar
     {
         public string Name { get; set; }
     }

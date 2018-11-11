@@ -14,15 +14,18 @@ namespace AutoRepair.Services
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        public Task<Appoimtment> AddAppoimtmentAsync(Appoimtment appoimtment)
+        public void AddAppoimtment(Appoimtment appoimtment)
         {
-            throw new NotImplementedException();
+            if(appoimtment == null)
+            {
+                throw new ArgumentException(nameof(appoimtment));
+            }
+            _context.Add(appoimtment);
         }
-
-        public async Task<IEnumerable<Appoimtment>> GetAppoimtmentsAsync()
+        public async Task<bool> SaveChangesAsync()
         {
-            throw new NotImplementedException();
-            //return await _context.Appoimtments.ToListAsync();
+            // return true if 1 or more entities were changed
+            return (await _context.SaveChangesAsync() > 0);
         }
 
         public void Dispose()
@@ -30,6 +33,8 @@ namespace AutoRepair.Services
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+
 
         protected virtual void Dispose(bool disposing)
         {

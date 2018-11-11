@@ -7,16 +7,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutoRepair.Services
 {
-    public class ServicesTypeRepository : IServicesTypeRepository
+    public class ModelsCarRepository : IModelsCarRepository
     {
         private AutoRepairContext _context;
-        public ServicesTypeRepository(AutoRepairContext context)
+        public ModelsCarRepository(AutoRepairContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        public async Task<IEnumerable<ServiceType>> GetServicesTypeAsync()
+        public async Task<IEnumerable<ModelCar>> GetModelCarAsync()
         {
-            return await _context.ServicesType.ToListAsync();
+            return await _context.ModelsCar.ToListAsync();
         }
     }
 }

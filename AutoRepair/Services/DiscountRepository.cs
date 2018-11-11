@@ -7,16 +7,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutoRepair.Services
 {
-    public class ServicesTypeRepository : IServicesTypeRepository
+    public class DiscountRepository : IDiscountRepository
     {
         private AutoRepairContext _context;
-        public ServicesTypeRepository(AutoRepairContext context)
+        public DiscountRepository(AutoRepairContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        public async Task<IEnumerable<ServiceType>> GetServicesTypeAsync()
+
+        public async Task<IEnumerable<Discount>> GetDiscountAsync()
         {
-            return await _context.ServicesType.ToListAsync();
+            return await _context.Discounts.Include(x => x.UserDiscountServices).ToListAsync();
         }
     }
 }
