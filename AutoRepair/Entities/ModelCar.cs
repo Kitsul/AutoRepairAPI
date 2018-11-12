@@ -8,13 +8,11 @@ namespace AutoRepair.Entities
     public class ModelCar
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
 
-        [ForeignKey("UserId")]
-        public User User { get; set; }
     }
 }

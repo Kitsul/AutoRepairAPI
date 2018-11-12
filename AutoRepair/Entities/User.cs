@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,7 +10,7 @@ namespace AutoRepair.Entities
     public class User
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -25,7 +26,6 @@ namespace AutoRepair.Entities
         [MaxLength(200)]
         public string PhoneNumber { get; set; }
 
-        public ICollection<UserDiscountService> UserDiscountServices { get; set; }
-        public ICollection<ModelCar> ModelsCar { get; set; }
+        public ICollection<UserDiscount> UserDiscount{ get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace AutoRepair.Mapper
     {
         public DiscountsProfiler()
         {
-            CreateMap<Entities.Discount, Models.Discount>()
+            CreateMap<Entities.Discount, ModelsDTO.DiscountDto>()
                 .ForMember(x => x.DiscountMessage, 
                  map => map.MapFrom(src => $"Your discount is { src.Count } % { src.Description }"));
         }

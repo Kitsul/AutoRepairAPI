@@ -10,8 +10,8 @@ namespace AutoRepair.Mapper
     {
         public ModelsCarProfile()
         {
-            CreateMap<Entities.ModelCar, Models.ModelCar>()
-                .ForMember(x => x.Name, map => map.MapFrom(src => src.Name));
+            CreateMap<Entities.ModelCar, ModelsDTO.ModelCarDto>()
+                .ForMember(x => x.CarModel, map => map.MapFrom(src => src.Name));
         }
     }
 }

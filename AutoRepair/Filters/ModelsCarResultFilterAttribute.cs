@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
+using AutoRepair.ModelsDTO;
 namespace AutoRepair.Filters
 {
     public class ModelsCarResultFilterAttribute : ResultFilterAttribute
@@ -15,7 +15,7 @@ namespace AutoRepair.Filters
                 await next();
                 return;
             }
-            resultFromAction.Value = AutoMapper.Mapper.Map<IEnumerable<Models.ModelCar>>(resultFromAction.Value);
+            resultFromAction.Value = AutoMapper.Mapper.Map<IEnumerable<ModelCarDto>>(resultFromAction.Value);
             await next();
         }
     }

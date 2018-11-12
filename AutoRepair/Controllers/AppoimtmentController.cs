@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using AutoRepair.Models;
+using AutoRepair.Entities;
+using AutoRepair.ModelsDTO;
 using AutoRepair.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,22 +13,54 @@ namespace AutoRepair.Controllers
     public class AppoimtmentController : Controller
     {
         private IAppoimtmentsRepository _appoimtmentRepository;
-        private readonly IMapper _mapper;
-        public AppoimtmentController(IAppoimtmentsRepository appoimtmentRepository, IMapper mapper)
+        private IModelsCarRepository _modelsCarRepository;
+
+        public AppoimtmentController(IAppoimtmentsRepository appoimtmentRepository,
+            IMapper mapper,
+            IModelsCarRepository modelsCarRepository)
         {
             _appoimtmentRepository = appoimtmentRepository ?? throw new ArgumentNullException(nameof(appoimtmentRepository));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _modelsCarRepository = modelsCarRepository ?? throw new ArgumentNullException(nameof(modelsCarRepository));
         }
         [HttpPost]
-        public async Task<IActionResult> CreateAppoimtment([FromBody] Appoimtment appoimtment)
-        { 
-            var t = DateTime.Parse(appoimtment.StartDate);
-            var appoimtmentEntity = _mapper.Map<Entities.Appoimtment>(appoimtment);
-            _appoimtmentRepository.AddAppoimtment(appoimtmentEntity);
+        public async Task<IActionResult> CreateAppoimtment([FromBody] AppoimtmentDto appoimtment)
+        {
+            try
+            {
+                var car = await _modelsCarRepository.GetModelCarAsync(appoimtment.Car.CarModel);
+                var appoimtmentEntity = new Appoimtment()
+                {
+                    StartDate = appoimtment.StartDate,
+                    EndDate = appoimtment.EndDate,
+                    Message = appoimtment.Message,
+                    Car = car,
+                    User = new User()
+                    {
+                        FirstName = appoimtment.User.FirstName,
+                        SecondName = appoimtment.User.SecondName,
+                        Email = appoimtment.User.Email,
+                        PhoneNumber = appoimtment.User.PhoneNumber
+                    }
 
-            await _appoimtmentRepository.SaveChangesAsync();
-            return Ok();
+                };
+                foreach (var serviceType in appoimtment.ServicesType)
+                {
+                    appoimtmentEntity.AppoimtmentServiceType.Add(new AppoimtmentServiceType()
+                    {
+                        ServiceType = serviceType,
+                        Appoimtment = appoimtmentEntity,
+                    });
+                }
+                _appoimtmentRepository.AddAppoimtment(appoimtmentEntity);
+                await _appoimtmentRepository.SaveChangesAsync();
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
+            }
+            
         }
-       
+
     }
 }

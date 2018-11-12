@@ -1,5 +1,5 @@
 ﻿using AutoRepair.Filters;
-using AutoRepair.Models;
+using AutoRepair.ModelsDTO;
 using AutoRepair.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -25,23 +25,20 @@ namespace AutoRepair.Controllers
         [DiscountsResultFilter]
         public async Task<IActionResult> GetDiscounts(string email)
         {
-            List<Discount> lists = new List<Discount>();
-            var user = await _userRepository.GetUserAsync("bill_gates@gmail.com");
+            List<DiscountDto> lists = new List<DiscountDto>();
+            var user = await _userRepository.GetUserAsync(email);
             if(user == null)
             {
                 return NotFound();
             }
             var discounts = await _discountRepository.GetDiscountAsync();
+            var userDiscounts = discounts.Where(x => x.UserDiscount.All(v => v.UserId == user.Id)).ToList();
+            if (userDiscounts == null)
+            {
+                return NotFound();
+            }
 
-            var result = discounts.Join(user.UserDiscountServices,
-                                        d => d.Id,
-                                        uds => uds.DiscountId,
-                                        (d, uds) => new Discount()
-                                        {
-                                            DiscountMessage = $"{ d.Count} {d.Description}"
-                                        });
-
-            return Ok(result);
+            return Ok(userDiscounts);
         }
     }
 }

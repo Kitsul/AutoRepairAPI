@@ -20,7 +20,7 @@ namespace AutoRepair.Controllers
         [ModelsCarResultFilter]
         public async Task<IActionResult> GetModelsCar()
         {
-            var modelsCar = await _modelsCarRepository.GetModelCarAsync();
+            var modelsCar = await _modelsCarRepository.GetModelsCarAsync();
             return Ok(modelsCar);
         }
     }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace AutoRepair.Entities
 {
@@ -11,7 +11,7 @@ namespace AutoRepair.Entities
     public class Discount
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public decimal Count { get; set; }
@@ -20,6 +20,6 @@ namespace AutoRepair.Entities
         [MaxLength(200)]
         public string Description { get; set; }
 
-        public ICollection<UserDiscountService> UserDiscountServices { get; set; }
+        public ICollection<UserDiscount> UserDiscount{ get; set; }
     }
 }

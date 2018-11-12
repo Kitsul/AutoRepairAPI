@@ -15,7 +15,7 @@ namespace AutoRepair.Filters
                 await next();
                 return;
             }
-            resultFromAction.Value = AutoMapper.Mapper.Map<IEnumerable<Models.User>>(resultFromAction.Value);
+            resultFromAction.Value = AutoMapper.Mapper.Map<IEnumerable<ModelsDTO.UserDto>>(resultFromAction.Value);
             await next();
         }
     }

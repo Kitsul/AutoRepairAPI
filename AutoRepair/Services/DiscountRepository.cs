@@ -17,7 +17,7 @@ namespace AutoRepair.Services
 
         public async Task<IEnumerable<Discount>> GetDiscountAsync()
         {
-            return await _context.Discounts.Include(x => x.UserDiscountServices).ToListAsync();
+            return await _context.Discounts.Include(x => x.UserDiscount).ToListAsync();
         }
     }
 }

@@ -10,9 +10,7 @@ namespace AutoRepair.Mapper
     {
         public UserProfiler()
         {
-            CreateMap<Entities.User, Models.User>()
-               .ForMember(x => x.FullName,
-                map => map.MapFrom(src => $"{ src.FirstName} { src.SecondName}"));
+            CreateMap<Entities.User, ModelsDTO.UserDto>();
         }
     }
 }

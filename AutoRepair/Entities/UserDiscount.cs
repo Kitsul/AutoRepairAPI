@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace AutoRepair.Entities
 {
-    public class UserDiscountService
+    public class UserDiscount
     {
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
-        public Guid DiscountId { get; set; }
+        public int DiscountId { get; set; }
         public Discount Discount { get; set; }
-        public Guid ServiceTypeId { get; set; }
-        public ServiceType ServiceType { get; set; }
     }
 }

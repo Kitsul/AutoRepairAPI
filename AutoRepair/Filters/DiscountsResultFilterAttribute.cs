@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
+using AutoRepair.ModelsDTO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +17,7 @@ namespace AutoRepair.Filters
                 await next();
                 return;
             }
-            resultFromAction.Value = AutoMapper.Mapper.Map<IEnumerable<Models.Discount>>(resultFromAction.Value);
+            resultFromAction.Value = AutoMapper.Mapper.Map<IEnumerable<DiscountDto>>(resultFromAction.Value);
             await next();
         }
     }

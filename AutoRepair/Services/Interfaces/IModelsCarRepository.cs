@@ -6,6 +6,7 @@ namespace AutoRepair.Services
 {
     public interface IModelsCarRepository
     {
-        Task<IEnumerable<ModelCar>> GetModelCarAsync();
+        Task<IEnumerable<ModelCar>> GetModelsCarAsync();
+        Task<ModelCar> GetModelCarAsync(string nameCar);
     }
 }

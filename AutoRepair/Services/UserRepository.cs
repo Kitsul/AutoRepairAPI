@@ -18,14 +18,8 @@ namespace AutoRepair.Services
         }
         public async Task<User> GetUserAsync(string email)
         {
-            return await _context.Users.Include(c => c.ModelsCar)
-                                       .Include(udc => udc.UserDiscountServices)
-                                       .FirstOrDefaultAsync(u => u.Email.Equals(email));
+            return await _context.Users.Include(x => x.UserDiscount).FirstOrDefaultAsync(u => u.Email.Equals(email));
         }
 
-        public Task SaveUserAsync()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

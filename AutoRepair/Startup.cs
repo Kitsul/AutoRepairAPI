@@ -38,7 +38,6 @@ namespace AutoRepair
             services.AddDbContext<AutoRepairContext>(x => x.UseSqlServer(connectionString));
 
             services.AddScoped<IAppoimtmentsRepository, AppoimtmentsRepository>();
-            services.AddScoped<IServicesTypeRepository, ServicesTypeRepository>();
             services.AddScoped<IModelsCarRepository, ModelsCarRepository>();
             services.AddScoped<IUserRepository, UserRepository>(); 
             services.AddScoped<IDiscountRepository, DiscountRepository>();

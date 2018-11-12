@@ -14,9 +14,13 @@ namespace AutoRepair.Services
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        public async Task<IEnumerable<ModelCar>> GetModelCarAsync()
+        public async Task<IEnumerable<ModelCar>> GetModelsCarAsync()
         {
             return await _context.ModelsCar.ToListAsync();
+        }
+        public async Task<ModelCar> GetModelCarAsync(string nameCar)
+        {
+            return await _context.ModelsCar.FirstOrDefaultAsync(car => car.Name.Equals(nameCar));
         }
     }
 }
