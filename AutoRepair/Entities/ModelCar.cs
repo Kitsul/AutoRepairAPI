@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AutoRepair.Entities
 {
-    [Table("ModelsCar")]
+    [Table("YK_ModelsCar")]
     public class ModelCar
     {
         [Key]

@@ -1,5 +1,8 @@
-﻿namespace AutoRepair.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AutoRepair.Entities
 {
+    [Table("YK_UserDiscount")]
     public class UserDiscount
     {
         public int UserId { get; set; }
