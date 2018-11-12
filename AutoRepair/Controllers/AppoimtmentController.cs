@@ -22,6 +22,13 @@ namespace AutoRepair.Controllers
             _appoimtmentRepository = appoimtmentRepository ?? throw new ArgumentNullException(nameof(appoimtmentRepository));
             _modelsCarRepository = modelsCarRepository ?? throw new ArgumentNullException(nameof(modelsCarRepository));
         }
+
+        /// <summary>
+        /// Save appoimtment
+        /// </summary>
+        /// <param name="appoimtment"></param>
+        /// <returns></returns>
+
         [HttpPost]
         public async Task<IActionResult> CreateAppoimtment([FromBody] AppoimtmentDto appoimtment)
         {

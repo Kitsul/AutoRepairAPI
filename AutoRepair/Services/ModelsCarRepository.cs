@@ -22,5 +22,23 @@ namespace AutoRepair.Services
         {
             return await _context.ModelsCar.FirstOrDefaultAsync(car => car.Name.Equals(nameCar));
         }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_context != null)
+                {
+                    _context.Dispose();
+                    _context = null;
+                }
+            }
+        }
     }
 }

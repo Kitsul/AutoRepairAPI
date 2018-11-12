@@ -16,6 +16,11 @@ namespace AutoRepair.Controllers
             _modelsCarRepository = modelsCarRepository ?? throw new ArgumentNullException(nameof(modelsCarRepository));
         }
 
+        /// <summary>
+        /// Get all car model
+        /// </summary>
+        /// <returns></returns>
+
         [HttpGet]
         [ModelsCarResultFilter]
         public async Task<IActionResult> GetModelsCar()

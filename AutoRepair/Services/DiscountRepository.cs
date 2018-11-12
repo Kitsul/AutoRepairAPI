@@ -19,5 +19,23 @@ namespace AutoRepair.Services
         {
             return await _context.Discounts.Include(x => x.UserDiscount).ToListAsync();
         }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_context != null)
+                {
+                    _context.Dispose();
+                    _context = null;
+                }
+            }
+        }
     }
 }

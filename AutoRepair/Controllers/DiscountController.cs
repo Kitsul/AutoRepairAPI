@@ -21,6 +21,12 @@ namespace AutoRepair.Controllers
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         }
 
+        /// <summary>
+        /// Get user's discounts by id
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+
         [HttpGet]
         [DiscountsResultFilter]
         public async Task<IActionResult> GetDiscounts(string email)
