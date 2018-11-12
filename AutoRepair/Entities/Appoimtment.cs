@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AutoRepair.Entities
 {
-    [Table("Appoimtments")]
+    [Table("YK_Appoimtments")]
     public class Appoimtment
     {
         [Key]

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AutoRepair.Entities
 {
-    [Table("AppoimtmentServiceTypes")]
+    [Table("YK_AppoimtmentServiceTypes")]
     public class AppoimtmentServiceType
     {
         [Key]
