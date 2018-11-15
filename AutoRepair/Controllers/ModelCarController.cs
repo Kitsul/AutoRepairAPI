@@ -17,9 +17,9 @@ namespace AutoRepair.Controllers
         }
 
         /// <summary>
-        /// Get all car model
+        /// Get all car models
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of all models</returns>
 
         [HttpGet]
         [ModelsCarResultFilter]
